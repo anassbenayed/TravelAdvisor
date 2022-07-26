@@ -5,12 +5,11 @@ import {
   Popup,
   TileLayer,
   useMap,
-  useMapEvent,
   useMapEvents,
 } from "react-leaflet";
 import L, { LatLng, LatLngBounds } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { makeStyles, Typography, Paper } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 
 export default function LLMap({
@@ -22,7 +21,7 @@ export default function LLMap({
 }) {
   const classes = useStyles();
   const mapRef = React.createRef(null);
-  const [position, setPosition] = useState([36.807133, 10.185171]);
+  const position = [36.807133, 10.185171];
   const [markers, setMarkers] = useState(null);
   const [allMarkers, setallMarkers] = useState(null);
 
@@ -41,23 +40,23 @@ export default function LLMap({
     shadowUrl: "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
   });
 
-  function LocateMe() {
-    const map = useMapEvents({
-      click() {
-        map.locate({ enableHighAccuracy: true });
-      },
-      locationfound(e) {
-        setPosition(e.latlng);
-        map.flyTo(e.latlng, map.getZoom());
-      },
-    });
+  // function LocateMe() {
+  //   const map = useMapEvents({
+  //     click() {
+  //       map.locate({ enableHighAccuracy: true });
+  //     },
+  //     locationfound(e) {
+  //       setPosition(e.latlng);
+  //       map.flyTo(e.latlng, map.getZoom());
+  //     },
+  //   });
 
-    return position === null && position === [36.807133, 10.185171] ? null : (
-      <Marker position={position} icon={greenIcon}>
-        <Popup>I find you!</Popup>
-      </Marker>
-    );
-  }
+  //   return position === null && position === [36.807133, 10.185171] ? null : (
+  //     <Marker position={position} icon={greenIcon}>
+  //       <Popup>I find you!</Popup>
+  //     </Marker>
+  //   );
+  // }
 
   function DisplayMarkers() {
     const mMap = useMap();
@@ -96,6 +95,7 @@ export default function LLMap({
                         ? place.photo.images.large.url
                         : "https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg"
                     }
+                    alt={place.name}
                   />
                   <Rating
                     readOnly

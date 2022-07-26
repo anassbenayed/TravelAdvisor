@@ -1,5 +1,5 @@
-import React, { useState, useEffect, createRef } from "react";
-import { IconButton, makeStyles } from "@material-ui/core";
+import React from "react";
+import { makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -23,7 +23,7 @@ export default function FavoritesList({
         </Button>
       </div>
       <div className={classes.list}>
-        {Data != [] &&
+        {Data !== [] &&
           Data?.map((place, index) => {
             return (
               <div key={index} className={classes.favItem}>
@@ -44,7 +44,7 @@ export default function FavoritesList({
             );
           })}
       </div>
-      {Data == [] && (
+      {Data === [] && (
         <div className={classes.noFav}>
           <div className={classes.noFavText}>No favorites yet</div>
         </div>

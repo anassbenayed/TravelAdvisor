@@ -39,7 +39,7 @@ function App() {
       (place) => place.address === newPlace.address
     );
 
-    if (exists == -1) {
+    if (exists === -1) {
       existingFavorites.push(newPlace);
       setfavoritesList(existingFavorites);
     }
@@ -103,7 +103,7 @@ function App() {
             places={places}
           />
         </Grid>
-        <Grid item xs={12} md={isViewingFavorites == false ? 9 : 6}>
+        <Grid item xs={12} md={isViewingFavorites === false ? 9 : 6}>
           <LLMap
             coords={coords}
             places={places}
